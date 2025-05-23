@@ -11,6 +11,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'primary-green': '#2E7D32',
+        'primary-gold': '#FFD700',
+        'primary-black': '#1A1A1A',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
       },
     },
   },
