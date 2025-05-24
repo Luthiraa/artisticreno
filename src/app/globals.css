@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --primary-green: #2E7D32;
   --primary-gold: #FFD700;
   --primary-black: #1A1A1A;
+  --dark-bg: #121212;
+  --dark-secondary: #1E1E1E;
+  --dark-card: #252525;
+  --dark-text: #E0E0E0;
 }
 
 @layer base {
   body {
-    @apply bg-white text-primary-black;
+    @apply bg-[var(--dark-bg)] text-[var(--dark-text)];
   }
 }
 
@@ -18,13 +21,24 @@
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
   .btn-primary {
-    @apply bg-primary-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300;
+    @apply bg-primary-gold text-primary-black px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300;
   }
   
   .btn-secondary {
     @apply bg-primary-gold text-primary-black px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300;
+  }
+  
+  .section-dark {
+    @apply bg-dark-bg text-dark-text;
+  }
+  
+  .section-dark-secondary {
+    @apply bg-dark-secondary text-dark-text;
+  }
+  
+  .card-dark {
+    @apply bg-dark-card text-dark-text shadow-lg;
   }
 }
 

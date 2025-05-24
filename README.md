@@ -8,7 +8,7 @@ A modern, animated website for Artistic Reno construction company built with Nex
 - Animated components using Framer Motion
 - Image slideshow with Swiper
 - Optimized for Vercel deployment
-- Custom color scheme (green, gold, and black)
+- Dark theme with custom color scheme (black, dark gray, and gold)
 
 ## Getting Started
 

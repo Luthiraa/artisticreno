@@ -1,343 +1,338 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade } from 'swiper/modules';
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
 import Image from 'next/image';
 import ContactForm from '@/components/ContactForm';
+import PartnerLogos from '@/components/PartnerLogos';
 
 const heroSlides = [
   {
-    image: '/images/hero-1.jpg',
+    image: '/hero.jpg',
+    title: 'Building for a lifetime',
+    subtitle: 'We offer top-quality interior renovations, new home construction, and commercial project solutions.',
+  },
+  {
+    image: '/hero1.jpg',
     title: 'Excellence in Construction',
     subtitle: 'Building Your Vision, One Project at a Time',
   },
   {
-    image: '/images/hero-2.jpg',
-    title: 'Professional Renovations',
-    subtitle: 'Transform Your Space with Expert Craftsmanship',
-  },
-  {
-    image: '/images/hero-3.jpg',
+    image: '/hero3.jpg',
     title: 'Quality Guaranteed',
     subtitle: '25+ Years of Experience in the GTA',
   },
 ];
 
-const features = [
-  { title: 'Reliability & Trust', description: 'Our promise stands on the proven track record.' },
-  { title: 'Quality Workmanship', description: 'We deliver projects of lasting value.' },
-  { title: 'Fair & Transparent Pricing', description: 'No hidden fees. We offer clear quotes.' },
-];
-
-const services = [
-  { name: 'Residential', image: '/images/residential-service.jpg', description: 'Tailoring to your needs with our expert residential construction services.' },
-  { name: 'Commercial', image: '/images/commercial-service.jpg', description: 'Delivering high-quality commercial construction services.' },
-];
-
-const numberedServices = [
-  { number: 1, title: 'Building Construction', description: 'Professional building construction services for residential and commercial projects.' },
-  { number: 2, title: 'Building Renovation', description: 'Expert building renovation services to modernize and enhance your property.' },
-  { number: 3, title: 'Building Maintenance', description: 'Comprehensive building maintenance services for optimal property upkeep.' },
-  { number: 4, title: 'Interior Design', description: 'Expert interior design services to transform your space with style and functionality.' },
-];
-
 export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  
   return (
     <>
       <Navigation />
       <main>
-        {/* Hero Section - Updated Text */}
-        <section id="home" className="relative h-screen flex items-center justify-center text-center text-white" style={{ backgroundImage: 'url(/images/hero-background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-          <div className="absolute inset-0 bg-black/60" aria-hidden="true"></div>
-          <div className="relative z-10 container">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-4"
+        {/* Hero Section - Carousel with Left-oriented Text */}
+        <section id="home" className="relative h-screen flex items-center text-white">
+          <div className="absolute inset-0">
+            <Swiper
+              modules={[Autoplay, EffectFade, Pagination]}
+              effect="fade"
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false
+              }}
+              loop={true}
+              speed={800}
+              className="h-full w-full"
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.realIndex);
+              }}
             >
-              Building <br /> for a lifetime.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
-            >
-              We offer top-quality interior renovations, new home construction, and commercial project solutions.
-            </motion.p>
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary"
-            >
-              View All
-            </motion.button>
+              {heroSlides.map((slide, index) => (
+                <SwiperSlide key={index} className="h-full w-full">
+                  <div 
+                    className="h-full w-full bg-cover bg-center"
+                    style={{ 
+                      backgroundImage: `url(${slide.image})`,
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      filter: 'brightness(0.85)'
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/40" aria-hidden="true"></div>
+                  <div className="relative h-full flex items-center">
+                    <div className="container">
+                      <div className="max-w-2xl">
+                        <motion.h1
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          key={`title-${index}`}
+                          transition={{ duration: 0.8 }}
+                          className="text-5xl md:text-7xl font-bold mb-4 text-left"
+                        >
+                          {slide.title}
+                        </motion.h1>
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          key={`subtitle-${index}`}
+                          transition={{ duration: 0.8, delay: 0.2 }}
+                          className="text-xl md:text-2xl mb-8 text-left"
+                        >
+                          {slide.subtitle}
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 0.4 }}
+                          className="text-left"
+                        >
+                          <motion.div
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ 
+                              repeat: Infinity, 
+                              duration: 2,
+                              ease: "easeInOut"
+                            }}
+                          >
+                            <motion.button
+                              whileHover={{ scale: 1.1, backgroundColor: "#f3c06a" }}
+                              whileTap={{ scale: 0.95 }}
+                              className="w-14 h-14 rounded-full bg-primary-gold flex items-center justify-center text-white shadow-lg"
+                              onClick={() => {
+                                document.getElementById('about')?.scrollIntoView({ 
+                                  behavior: 'smooth' 
+                                });
+                              }}
+                              aria-label="Scroll to About section"
+                            >
+                              <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                width="28" 
+                                height="28" 
+                                viewBox="0 0 24 24" 
+                                fill="white" 
+                                strokeWidth="2"
+                                className="transform translate-y-1"
+                              >
+                                <polygon points="4 8, 12 16, 20 8" />
+                              </svg>
+                            </motion.button>
+                          </motion.div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            
+            {/* Custom progress bar - aligned with main text content */}
+            <div className="absolute bottom-10 z-10">
+              <div className="container">
+                <div className="max-w-2xl pl-40 md:pl-64">
+                  <div className="flex space-x-6">
+                    {heroSlides.map((_, index) => (
+                      <div key={index} className="relative">
+                        <div 
+                          className={`h-1 w-28 md:w-36 ${index === activeIndex ? 'bg-white/30' : 'bg-white/15'} overflow-hidden`}
+                        >
+                          <motion.div 
+                            className="h-full bg-primary-gold"
+                            initial={{ width: "0%" }}
+                            animate={{ 
+                              width: index === activeIndex ? "100%" : "0%" 
+                            }}
+                            transition={{ 
+                              duration: index === activeIndex ? 5 : 0,
+                              ease: "linear"
+                            }}
+                            key={`progress-${activeIndex}-${index}`}
+                          />
+                        </div>
+                        <div className="mt-2 text-left text-xs font-medium text-white/90">
+                          {index === 0 && "Building Careers"}
+                          {index === 1 && "Strong Safety Teams"}
+                          {index === 2 && "Green Building"}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-
-        {/* Welcome / About Company Section */}
-        <section id="about" className="py-20 bg-gray-50">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <motion.div
+        </section>        {/* About Company Section */}
+        <section id="about" className="py-20 relative bg-[var(--dark-bg)] text-white">
+          {/* Background overlay */}
+          <div className="absolute inset-0 bg-[var(--dark-bg)] z-0"></div>
+          
+          <div className="container relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              {/* Left side - Image columns */}              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
+                className="lg:col-span-5 relative"
               >
-                <h3 className="text-lg font-semibold text-primary-green mb-2">Welcome</h3>
-                <h2 className="text-4xl font-bold mb-6">About Company</h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  Dedicated to delivering exceptional quality and outstanding results.
-                </p>
-                <p className="text-gray-600 mb-6">
-                  With over 25 years of experience, AR Construction has established itself as a leader in providing innovative and professional construction and renovation services.
-                </p>
-                <p className="text-gray-600 mb-6">
-                  Our expertise spans office remodeling, home renovations and luxurious kitchen and bath upgrades, allowing us to transform your dreams into reality with precision and creativity.
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary"
-                >
-                  Read More
-                </motion.button>
+                <div className="relative lg:h-[550px]">                  {/* Main image */}
+                  <div className="relative z-10 overflow-hidden rounded-lg shadow-xl">
+                    <Image
+                      src="/images/about-us-1.jpg"
+                      alt="Artistic Reno Team"
+                      width={600}
+                      height={450}
+                      className="rounded-lg object-cover w-full h-[400px]"
+                    />
+                  </div>
+                    {/* Secondary image - Drilling picture positioned to overlap the main image */}
+                  <div className="absolute bottom-1/4 -right-14 z-20 overflow-hidden rounded-lg shadow-xl max-w-[280px]">
+                    <Image
+                      src="/images/about-us-2.jpg"
+                      alt="Artistic Reno Project"
+                      width={280}
+                      height={200}
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                  
+                  {/* Logo overlay */}
+                  <div className="absolute -top-10 -left-10 z-30 bg-[var(--dark-bg)] p-4 rounded-lg shadow-xl">
+                    <Image
+                      src="/images/artistic-reno-logo.png"
+                      alt="Artistic Reno Logo"
+                      width={100}
+                      height={100}
+                      className="rounded-lg object-contain"
+                    />
+                  </div>
+                </div>
               </motion.div>
+                {/* Right side - Text content */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="lg:col-span-7 lg:pl-12 mt-16 lg:mt-0"
               >
-                {/* Placeholder for images from the About Us section in the image, potentially combined or styled differently */}
-                <Image
-                  src="/images/about-company.jpg" // Placeholder image
-                  alt="About Company"
-                  width={600}
-                  height={400}
-                  className="rounded-lg shadow-lg"
-                />
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Value Section */}
-        <section className="py-16 bg-gray-100">
-          <div className="container">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-3xl font-bold text-center mb-8"
-            >
-              Our Value
-            </motion.h2>
-            <motion.p
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.6, delay: 0.2 }}
-               viewport={{ once: true }}
-               className="text-lg text-gray-700 text-center mb-8"
-            >
-              We are committed to integrity, quality, customer satisfaction, innovation, safety, sustainability, professionalism, reliability, community, and continuous improvement.
-            </motion.p>
-            {/* Placeholder for Signature */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <Image
-                src="/images/signature.png" // Placeholder for signature image
-                alt="Founder Signature"
-                width={200}
-                height={100}
-              />
-              <p className="text-lg font-semibold mt-2">Afzal Mulaffer</p>
-              <p className="text-gray-600">Founder</p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Metrics Section - Updated */}
-        <section className="py-16 bg-white">
-          <div className="container text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-lg text-gray-600 mb-4"
-            >
-              We have 25 years experience in construction
-            </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <p className="text-5xl font-bold text-primary-green">15</p>
-                <p className="text-lg text-gray-600">Active Clients</p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <p className="text-5xl font-bold text-primary-green">870</p>
-                <p className="text-lg text-gray-600">Satisfied Clients</p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <p className="text-5xl font-bold text-primary-green">45</p>
-                <p className="text-lg text-gray-600">Projects Complete</p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Construction Area Percentages */}
-        <section className="py-16 bg-gray-100">
-          <div className="container">
-            {/* Add a title or context if needed, not explicitly in image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }} className="text-center">
-                <p className="text-5xl font-bold text-primary-green mb-2">85%</p>
-                <p className="text-lg text-gray-600">Commercial building upgrades</p>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }} className="text-center">
-                <p className="text-5xl font-bold text-primary-green mb-2">78%</p>
-                <p className="text-lg text-gray-600">Interior construction</p>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }} viewport={{ once: true }} className="text-center">
-                <p className="text-5xl font-bold text-primary-green mb-2">83%</p>
-                <p className="text-lg text-gray-600">Exterior Construction</p>
-              </motion.div>
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.8 }} viewport={{ once: true }} className="text-center">
-                <p className="text-5xl font-bold text-primary-green mb-2">72%</p>
-                <p className="text-lg text-gray-600">Renovation & Remodeling</p>
-              </motion.div>
-               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.0 }} viewport={{ once: true }} className="text-center">
-                <p className="text-5xl font-bold text-primary-green mb-2">85%</p>
-                <p className="text-lg text-gray-600">Preventative maintenance</p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Our Mission Section (Placeholder based on image text) */}
-        <section className="py-20 bg-white">
-          <div className="container">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold text-center mb-8"
-            >
-              Our Mission
-            </motion.h2>
-            {/* Add mission statement text here */}
-          </div>
-        </section>
-
-        {/* Site Areas What We Serve Section */}
-         <section className="py-20 bg-gray-50">
-            <div className="container">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-4xl font-bold text-center mb-8"
-                >
-                    Site Areas <br /> what we serve
-                </motion.h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">RESIDENTIAL CONSTRUCTION</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">RENOVATION AND REFURBISHMENT</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">COMMERCIAL CONSTRUCTION</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">INTERIOR DESIGN</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">FRAMING SERVICES</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">ELECTRICAL SERVICES</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.8 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">PLUMBING SERVICES</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.9 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">BUILDING MAINTENANCE</p></motion.div>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.0 }} viewport={{ once: true }} className="bg-white p-6 rounded-lg shadow-md text-center"><p className="text-lg font-semibold text-primary-green">LANDSCAPING</p></motion.div>
+                <div className="flex flex-col gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold text-primary-gold mb-2">About Our Company</h3>
+                    <h2 className="text-4xl font-bold mb-6">Artistic Reno</h2>
+                  </div>
+                  
+                  <p className="text-lg">
+                    Unleashing creativity in every project, Artistic Reno transforms spaces with precision and passion. Our dedicated team brings 15+ years of experience in residential and commercial renovations across the Greater Toronto Area.
+                  </p>
+                  
+                  <p className="text-[var(--dark-text)]">
+                    From kitchen and bathroom remodels to complete home renovations, we deliver exceptional craftsmanship and innovative solutions tailored to your vision. Our commitment to quality materials and meticulous attention to detail ensures results that exceed expectations.
+                  </p>
                 </div>
-                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.2 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-8"
-                >
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="btn-primary"
-                    >
-                        Read More
-                    </motion.button>
-                </motion.div>
+              </motion.div>
             </div>
-         </section>
-
-        {/* Our Services Section - Numbered Cards */}
-        <section id="our-services" className="py-20 bg-white">
+          </div>        </section>          {/* Our Partners Section */}
+        <section className="py-16 bg-[var(--dark-secondary)] overflow-hidden relative">
+          {/* Background overlay with subtle gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--dark-secondary)] to-[#0F0F0F] opacity-95 z-0"></div>
+          
+          <div className="container relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-4xl font-bold text-center mb-12 text-primary-gold"
+            >
+              Our Partners
+            </motion.h2>
+            
+            {/* Decorative line under the heading */}
+            <div className="w-24 h-1 bg-primary-gold mx-auto mb-16"></div>
+            
+            {/* Using PartnerLogos client component */}
+            <PartnerLogos />
+          </div>        </section>
+          {/* Our Services Section */}
+        <section className="py-16 bg-white text-black">
           <div className="container">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-4xl font-bold text-center mb-12"
+              className="text-3xl font-bold text-center mb-12"
             >
               Our Services
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {numberedServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-100 p-6 rounded-lg shadow-md text-center"
-                >
-                  <div className="text-4xl font-bold text-primary-green mb-4">{service.number}</div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                  {/* Optional: Add Read More link */}
-                </motion.div>
-              ))}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Residential Service Card - exactly like the reference image */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="rounded-lg overflow-hidden shadow-lg relative"
+              >
+                <div className="relative h-80">
+                  <Image
+                    src="/images/residential.jpg"
+                    alt="Residential Services"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-white p-6">
+                  <h3 className="text-2xl font-bold mb-2">Residential</h3>
+                  <p className="text-gray-700 text-sm">
+                    Transform your home with our expert residential construction services, 
+                    delivering lasting quality and precision every step of the way
+                  </p>
+                </div>
+              </motion.div>
+              
+              {/* Commercial Service Card - exactly like the reference image */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="rounded-lg overflow-hidden shadow-lg relative"
+              >
+                <div className="relative h-80">
+                  <Image
+                    src="/images/comercial.jpg"
+                    alt="Commercial Services"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-white p-6">
+                  <h3 className="text-2xl font-bold mb-2">Commercial</h3>
+                  <p className="text-gray-700 text-sm">
+                    Delivering high-performance commercial spaces with precision construction, 
+                    durable materials, and a commitment to excellence
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Let's Work Together / Contact Info Section */}
-        <section id="contact" className="py-20 bg-primary-green text-white">
+        {/* Contact Section */}
+        <section id="contact" className="py-20 section-dark text-white">
           <div className="container grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
              <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -348,37 +343,17 @@ export default function Home() {
                 <h2 className="text-4xl font-bold mb-4">Let's work together</h2>
                 <p className="text-2xl font-semibold mb-4">+1 (647) 286‑6276</p>
                 <p className="text-lg mb-6">1180 -250 Consumers Rd <br /> Toronto Ontario <br /> M2J 4V6</p>
-                 <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-secondary"
-                  >
-                    Get In Touch
-                  </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-secondary"
+                >
+                  Get In Touch
+                </motion.button>
              </motion.div>
             <ContactForm />
-          </div>
-        </section>
-
-        {/* Mission Section (Content Placeholder) */}
-        {/* Moved down as per image flow */}
-         <section className="py-20 bg-white">
-          <div className="container">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold text-center mb-8"
-            >
-              Mission
-            </motion.h2>
-            {/* Add mission statement text here */}
-          </div>
-        </section>
-
+          </div>        </section>
       </main>
-      <Footer />
     </>
   );
 }

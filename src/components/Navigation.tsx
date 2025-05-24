@@ -16,12 +16,11 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <motion.header
+  return (    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-dark-bg shadow-lg' : 'bg-transparent'
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
@@ -30,8 +29,7 @@ const Navigation = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-          >
-            <Link href="/" className="text-2xl font-bold text-primary-green">
+          >            <Link href="/" className="text-2xl font-bold text-primary-gold">
               Artistic Reno
             </Link>
           </motion.div>
@@ -41,13 +39,11 @@ const Navigation = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="hidden md:flex space-x-8"
-          >
-            {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
+          >            {['Home', 'About', 'Partners', 'Contact'].map((item) => (
               <Link
                 key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`font-medium transition-colors duration-300 ${
-                  isScrolled ? 'text-primary-black hover:text-primary-green' : 'text-white hover:text-primary-gold'
+                href={`#${item.toLowerCase()}`}                className={`font-medium transition-colors duration-300 ${
+                  isScrolled ? 'text-dark-text hover:text-primary-gold' : 'text-white hover:text-primary-gold'
                 }`}
               >
                 {item}

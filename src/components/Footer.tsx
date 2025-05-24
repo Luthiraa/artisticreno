@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const Footer = () => {
-  return (
-    <footer className="bg-primary-black text-white py-12">
+  return (    <footer className="bg-dark-bg text-dark-text py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Copyright */}
@@ -36,12 +35,11 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-4 text-white">Useful links</h3>
-            <ul>
+            <h3 className="text-lg font-semibold mb-4 text-white">Useful links</h3>            <ul>
+              <li className="mb-2"><Link href="#home" className="text-gray-400 hover:text-primary-gold transition-colors duration-300">Home</Link></li>
               <li className="mb-2"><Link href="#about" className="text-gray-400 hover:text-primary-gold transition-colors duration-300">About</Link></li>
-              <li className="mb-2"><Link href="#projects" className="text-gray-400 hover:text-primary-gold transition-colors duration-300">Projects</Link></li>
+              <li className="mb-2"><Link href="#partners" className="text-gray-400 hover:text-primary-gold transition-colors duration-300">Partners</Link></li>
               <li className="mb-2"><Link href="#contact" className="text-gray-400 hover:text-primary-gold transition-colors duration-300">Contact Us</Link></li>
-              {/* Add Web Mail, Privacy Policy links if needed */}
             </ul>
           </motion.div>
 
