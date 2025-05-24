@@ -8,63 +8,52 @@ import Navigation from '@/components/Navigation';
 const commercialProjects = [
   {
     id: 1,
-    title: 'Modern Office Renovation',
-    location: 'Downtown Toronto, ON',
-    description: 'Complete office transformation with open workspace design, glass partitions, and modern amenities.',
-    image: '/images/commercial-service.jpg',
-    category: 'Office',
-    year: '2024',
-    features: ['Open Workspace', 'Glass Partitions', 'Modern Amenities', 'LED Lighting']
+    title: 'Carpet',
+    description: 'Professional carpet installation and replacement services for commercial spaces with high-quality materials and expert craftsmanship.',
+    image: '/images/carpet.jpg',
+    features: ['Commercial Grade Carpeting', 'Pattern Matching', 'Quick Installation', 'Moisture Resistant Options']
   },
   {
     id: 2,
-    title: 'Retail Store Design',
-    location: 'Yorkdale Mall, ON',
-    description: 'High-end retail space with custom displays, premium finishes, and strategic lighting.',
-    image: '/images/project3.jpg',
-    category: 'Retail',
-    year: '2024',
-    features: ['Custom Displays', 'Premium Finishes', 'Strategic Lighting', 'Security Systems']
+    title: 'Electrical',
+    description: 'Complete electrical solutions including wiring, panel upgrades, lighting systems, and code compliance for commercial properties.',
+    image: '/images/electrical-cc.jpg',
+    features: ['Panel Upgrades', 'Code Compliance', 'Emergency Lighting', 'Energy Efficient Solutions']
   },
   {
     id: 3,
-    title: 'Restaurant Renovation',
-    location: 'King Street, Toronto',
-    description: 'Fine dining restaurant with luxury finishes, custom bar, and professional kitchen upgrade.',
-    image: '/images/project4.jpg',
-    category: 'Restaurant',
-    year: '2023',
-    features: ['Luxury Finishes', 'Custom Bar', 'Professional Kitchen', 'Acoustic Design']
+    title: 'Floor',
+    description: 'Comprehensive flooring services including hardwood, laminate, tile, and vinyl installation with precision and durability.',
+    image: '/images/flooring.jpg',
+    features: ['Hardwood Installation', 'Tile & Stone', 'Vinyl Flooring', 'Floor Refinishing']
   },
   {
     id: 4,
-    title: 'Medical Clinic Fit-out',
-    location: 'Mississauga, ON',
-    description: 'Modern medical facility with specialized treatment rooms, reception area, and accessibility features.',
-    image: '/images/one-stop-solution.jpg',
-    category: 'Healthcare',
-    year: '2023',
-    features: ['Treatment Rooms', 'Reception Area', 'Accessibility Features', 'Medical Equipment']
+    title: 'Lighting',
+    description: 'Modern lighting design and installation to enhance ambiance, productivity, and energy efficiency in commercial spaces.',
+    image: '/images/electrical-c.jpg',
+    features: ['LED Solutions', 'Ambient Lighting', 'Task Lighting', 'Smart Controls']
   },
   {
     id: 5,
-    title: 'Corporate Headquarters',
-    location: 'Financial District, Toronto',
-    description: 'Executive office renovation with boardrooms, private offices, and collaborative spaces.',
-    image: '/images/comercial.jpg',
-    category: 'Corporate',
-    year: '2024',
-    features: ['Boardrooms', 'Private Offices', 'Collaborative Spaces', 'Executive Lounges']
+    title: 'Railing',
+    description: 'Custom railing installation and repair services for stairs, balconies, and safety barriers with various materials and styles.',
+    image: '/images/railing.jpg',
+    features: ['Stainless Steel Rails', 'Glass Railings', 'Safety Compliance', 'Custom Designs']
   },
   {
     id: 6,
-    title: 'Educational Facility',
-    location: 'York University, ON',
-    description: 'University building renovation with modern classrooms, laboratory spaces, and study areas.',
-    image: '/images/about-us-2.jpg',
-    category: 'Education',
-    year: '2023',
-    features: ['Modern Classrooms', 'Laboratory Spaces', 'Study Areas', 'Technology Integration']
+    title: 'Washrooms',
+    description: 'Complete washroom renovation and construction services including plumbing, fixtures, accessibility features, and modern finishes.',
+    image: '/images/washroom.jpg',
+    features: ['ADA Compliance', 'Modern Fixtures', 'Tile Installation', 'Plumbing Services']
+  },
+  {
+    id: 7,
+    title: 'Epoxy',
+    description: 'Professional epoxy flooring solutions for commercial and industrial spaces offering durability, chemical resistance, and easy maintenance.',
+    image: '/images/epoxy-c.jpg',
+    features: ['Chemical Resistant', 'Easy Maintenance', 'Slip Resistant', 'Quick Cure Options']
   }
 ];
 
@@ -81,12 +70,11 @@ export default function CommercialProjectsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                Commercial Projects
+            >              <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                Commercial Services
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                Explore our portfolio of professional spaces that inspire success and productivity
+                Professional renovation services for all your commercial space needs
               </p>
               <Link href="/">
                 <motion.button
@@ -99,20 +87,17 @@ export default function CommercialProjectsPage() {
               </Link>
             </motion.div>
           </div>
-        </section>
-
-        {/* Projects Grid */}
+        </section>        {/* Services Grid */}
         <section className="py-20 bg-gray-50">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {commercialProjects.map((project, index) => (
-                <motion.div
+              {commercialProjects.map((project, index) => (                <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                  className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
                 >
                   <div className="relative h-64 overflow-hidden">
                     <Image
@@ -121,30 +106,22 @@ export default function CommercialProjectsPage() {
                       fill
                       className="object-cover transition-transform duration-300 hover:scale-110"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary-gold text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        {project.category}
-                      </span>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                      <span className="bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                        {project.year}
-                      </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4">
+                      <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-lg">{project.title}</h3>
+                      <div className="w-12 h-1 bg-primary-gold rounded-full"></div>
                     </div>
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-primary-gold text-sm mb-3">{project.location}</p>
-                    <p className="text-gray-600 mb-4">{project.description}</p>
-                    
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-sm text-gray-800">Key Features:</h4>
+                    <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
+                      <div className="space-y-3">
+                      <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Key Features</h4>
                       <div className="flex flex-wrap gap-2">
                         {project.features.map((feature, idx) => (
                           <span
                             key={idx}
-                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs"
+                            className="bg-gradient-to-r from-primary-gold/10 to-yellow-500/10 text-gray-700 px-4 py-2 rounded-full text-sm font-medium border border-primary-gold/20 hover:bg-primary-gold/20 transition-colors"
                           >
                             {feature}
                           </span>
