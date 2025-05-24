@@ -191,7 +191,7 @@ export default function Home() {
                   {/* Main image */}
                   <div className="relative z-10 overflow-hidden rounded-lg shadow-xl">
                     <Image
-                      src="/images/about-us-1.jpg"
+                      src="/images/epoxy-ar.png"
                       alt="Artistic Reno Team"
                       width={600}
                       height={450}
