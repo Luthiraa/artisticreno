@@ -30,10 +30,9 @@ const ContactForm = () => {
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
       className="bg-gradient-to-br from-dark-card/90 to-dark-secondary/90 backdrop-blur-sm p-8 rounded-3xl shadow-2xl border border-gray-700/50"
-    >
-      <div className="text-center mb-8">
+    >      <div className="text-center mb-8">
         <h3 className="text-3xl font-bold mb-2 text-white">Get Your Free Quote</h3>
-        <p className="text-gray-300">Tell us about your project and we'll get back to you within 24 hours</p>
+        <p className="text-gray-300">Tell us about your project and we&apos;ll get back to you within 24 hours</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">

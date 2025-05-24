@@ -143,10 +143,9 @@ export default function ResidentialProjectsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Home?</h2>
+            >              <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Home?</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto">
-                Let's discuss your residential renovation project and bring your vision to life
+                Let&apos;s discuss your residential renovation project and bring your vision to life
               </p>
               <Link href="/#contact">
                 <motion.button

@@ -143,10 +143,9 @@ export default function CommercialProjectsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-6">Ready to Elevate Your Business Space?</h2>
+            >              <h2 className="text-4xl font-bold mb-6">Ready to Elevate Your Business Space?</h2>
               <p className="text-xl mb-8 max-w-2xl mx-auto">
-                Let's discuss your commercial renovation project and create a space that drives success
+                Let&apos;s discuss your commercial renovation project and create a space that drives success
               </p>
               <Link href="/#contact">
                 <motion.button

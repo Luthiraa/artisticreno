@@ -279,9 +279,8 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Our <span className="text-primary-gold">Partners</span>
               </h2>
-              
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We're proud to work with some of the most prestigious venues and organizations in the Greater Toronto Area, 
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We&apos;re proud to work with some of the most prestigious venues and organizations in the Greater Toronto Area, 
                 delivering exceptional construction and renovation services.
               </p>
             </motion.div>
@@ -353,13 +352,12 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="text-center mb-20"
-            >
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                Let's <span className="text-primary-gold">Connect</span>
+            >              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                Let&apos;s <span className="text-primary-gold">Connect</span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                 Ready to transform your space? Contact our expert team today for a consultation. 
-                We're here to bring your vision to life.
+                We&apos;re here to bring your vision to life.
               </p>
               
               {/* Main CTA Button - Yellow for high visibility */}
@@ -432,9 +430,8 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-white mb-4">Email Us</h3>
                   <a href="mailto:info@artisticreno.ca" className="text-xl font-bold text-primary-gold hover:text-yellow-400 transition-colors block mb-4 break-all">
                     info@artisticreno.ca
-                  </a>
-                  <p className="text-gray-300 text-lg">
-                    Send us your project details and we'll respond within 24 hours with a detailed proposal.
+                  </a>                  <p className="text-gray-300 text-lg">
+                    Send us your project details and we&apos;ll respond within 24 hours with a detailed proposal.
                   </p>
                 </motion.div>
               </motion.div>
