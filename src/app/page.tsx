@@ -76,13 +76,12 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/40" aria-hidden="true"></div>
                   <div className="relative h-full flex items-center">
                     <div className="container">
-                      <div className="max-w-2xl">
-                        <motion.h1
+                      <div className="max-w-2xl">                        <motion.h1
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           key={`title-${index}`}
                           transition={{ duration: 0.8 }}
-                          className="text-5xl md:text-7xl font-bold mb-4 text-left"
+                          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 text-left"
                         >
                           {slide.title}
                         </motion.h1>
@@ -91,7 +90,7 @@ export default function Home() {
                           animate={{ opacity: 1, y: 0 }}
                           key={`subtitle-${index}`}
                           transition={{ duration: 0.8, delay: 0.2 }}
-                          className="text-xl md:text-2xl mb-8 text-left"
+                          className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-left"
                         >
                           {slide.subtitle}
                         </motion.p>
@@ -108,11 +107,10 @@ export default function Home() {
                               duration: 2,
                               ease: "easeInOut"
                             }}
-                          >
-                            <motion.button
+                          >                            <motion.button
                               whileHover={{ scale: 1.1, backgroundColor: "#f3c06a" }}
                               whileTap={{ scale: 0.95 }}
-                              className="w-14 h-14 rounded-full bg-primary-gold flex items-center justify-center text-white shadow-lg"
+                              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary-gold flex items-center justify-center text-white shadow-lg"
                               onClick={() => {
                                 document.getElementById('about')?.scrollIntoView({ 
                                   behavior: 'smooth' 
@@ -122,12 +120,12 @@ export default function Home() {
                             >
                               <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
-                                width="28" 
-                                height="28" 
+                                width="24" 
+                                height="24" 
                                 viewBox="0 0 24 24" 
                                 fill="white" 
                                 strokeWidth="2"
-                                className="transform translate-y-1"
+                                className="transform translate-y-1 sm:w-7 sm:h-7"
                               >
                                 <polygon points="4 8, 12 16, 20 8" />
                               </svg>
@@ -140,16 +138,15 @@ export default function Home() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            
-            {/* Custom progress bar - aligned with main text content */}
-            <div className="absolute bottom-10 z-10">
+              {/* Custom progress bar - aligned with main text content */}
+            <div className="absolute bottom-6 sm:bottom-10 z-10">
               <div className="container">
-                <div className="max-w-2xl pl-40 md:pl-64">
-                  <div className="flex space-x-6">
+                <div className="max-w-2xl px-4 sm:pl-20 md:pl-40 lg:pl-64">
+                  <div className="flex space-x-3 sm:space-x-6">
                     {heroSlides.map((_, index) => (
                       <div key={index} className="relative">
                         <div 
-                          className={`h-1 w-28 md:w-36 ${index === activeIndex ? 'bg-white/30' : 'bg-white/15'} overflow-hidden`}
+                          className={`h-1 w-16 sm:w-24 md:w-28 lg:w-36 ${index === activeIndex ? 'bg-white/30' : 'bg-white/15'} overflow-hidden`}
                         >
                           <motion.div 
                             className="h-full bg-primary-gold"
@@ -164,7 +161,7 @@ export default function Home() {
                             key={`progress-${activeIndex}-${index}`}
                           />
                         </div>
-                        <div className="mt-2 text-left text-xs font-medium text-white/90">
+                        <div className="mt-2 text-left text-xs font-medium text-white/90 hidden sm:block">
                           {index === 0 && "Building Careers"}
                           {index === 1 && "Strong Safety Teams"}
                           {index === 2 && "Green Building"}
@@ -180,28 +177,29 @@ export default function Home() {
         <section id="about" className="py-20 relative bg-[var(--dark-bg)] text-white">
           {/* Background overlay */}
           <div className="absolute inset-0 bg-[var(--dark-bg)] z-0"></div>
-          
-          <div className="container relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              {/* Left side - Image columns */}              <motion.div
+              <div className="container relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left side - Image columns */}
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="lg:col-span-5 relative"
+                className="lg:col-span-5 relative order-2 lg:order-1"
               >
-                <div className="relative lg:h-[550px]">                  {/* Main image */}
+                <div className="relative h-[300px] sm:h-[400px] lg:h-[550px]">
+                  {/* Main image */}
                   <div className="relative z-10 overflow-hidden rounded-lg shadow-xl">
                     <Image
                       src="/images/about-us-1.jpg"
                       alt="Artistic Reno Team"
                       width={600}
                       height={450}
-                      className="rounded-lg object-cover w-full h-[400px]"
+                      className="rounded-lg object-cover w-full h-[250px] sm:h-[300px] lg:h-[400px]"
                     />
                   </div>
-                    {/* Secondary image - Drilling picture positioned to overlap the main image */}
-                  <div className="absolute bottom-1/4 -right-14 z-20 overflow-hidden rounded-lg shadow-xl max-w-[280px]">
+                  {/* Secondary image - Drilling picture positioned to overlap the main image */}
+                  <div className="absolute bottom-1/4 -right-6 sm:-right-10 lg:-right-14 z-20 overflow-hidden rounded-lg shadow-xl max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
                     <Image
                       src="/images/about-us-2.jpg"
                       alt="Artistic Reno Project"
@@ -212,13 +210,13 @@ export default function Home() {
                   </div>
                   
                   {/* Logo overlay */}
-                  <div className="absolute -top-10 -left-10 z-30 bg-[var(--dark-bg)] p-4 rounded-lg shadow-xl">
+                  <div className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 lg:-top-10 lg:-left-10 z-30 bg-[var(--dark-bg)] p-3 sm:p-4 rounded-lg shadow-xl">
                     <Image
                       src="/images/artistic-reno-logo.png"
                       alt="Artistic Reno Logo"
-                      width={100}
-                      height={100}
-                      className="rounded-lg object-contain"
+                      width={80}
+                      height={80}
+                      className="rounded-lg object-contain sm:w-20 sm:h-20 lg:w-24 lg:h-24"
                     />
                   </div>
                 </div>
